@@ -62,6 +62,32 @@ def main(params):
             print('Finished ingesting data into the postrges database')
             break
 
+def zones(params):
+    #unpack params
+    user = params.user
+    password = params.password
+    host = params.host
+    port = params.port
+    db = params.db
+    tbl_name = params.tbl_name
+    url = params.url
+
+    #download csv
+    #include the gz extension to make sure pandas can open
+    if url.endswith('.csv.gz'):
+        csv_name = 'output.csv.gz'
+    else:
+        csv_name = 'output.csv'
+
+    os.system(f'wget {url} -O {csv_name}')
+
+    #create connection to postgres to create valid statement
+    engine = create_engine(f'postgresql://{user}:{password}@{host}:{port}/{db}')
+
+    df_zones = pd.read_csv(csv_name)
+
+    df_zones.to_sql(name='zones', con=engine, if_exists='replace')
+
 if __name__ == '__main__':
 
     #Parse Args#
