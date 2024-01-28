@@ -14,7 +14,7 @@ def main(params):
     port = params.port
     db = params.db
     tbl_name = params.tbl_name
-    url = params.url
+    url = params.url_trips
 
     #download csv
     #include the gz extension to make sure pandas can open
@@ -70,7 +70,7 @@ def zones(params):
     port = params.port
     db = params.db
     tbl_name = params.tbl_name
-    url = params.url
+    url = params.url_zones
 
     #download csv
     #include the gz extension to make sure pandas can open
@@ -99,7 +99,8 @@ if __name__ == '__main__':
     parser.add_argument('--port', help='port of postgres')
     parser.add_argument('--db', help='postgress database name')
     parser.add_argument('--tbl_name', help='table name of where to write results')
-    parser.add_argument('--url', help='url of the csv location')
+    parser.add_argument('--url_trips', help='url of the csv location')
+    parser.add_argument('--url_zones', help='url of the zones data')
 
     args = parser.parse_args()
 
