@@ -107,6 +107,4 @@ if __name__ == '__main__':
 
     main(args)
 
-    time.sleep(300)
-
     zones(args)
