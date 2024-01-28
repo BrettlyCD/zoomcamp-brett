@@ -13,7 +13,7 @@ def main(params):
     host = params.host
     port = params.port
     db = params.db
-    tbl_name = params.tbl_name
+    tbl_name = params.tbl_trips
     url = params.url_trips
 
     #download csv
@@ -33,8 +33,8 @@ def main(params):
     df = next(df_iter)
 
     #convert datetimes
-    df.tpep_pickup_datetime = pd.to_datetime(df.tpep_pickup_datetime)
-    df.tpep_dropoff_datetime = pd.to_datetime(df.tpep_dropoff_datetime)
+    df.lpep_pickup_datetime = pd.to_datetime(df.lpep_pickup_datetime)
+    df.lpep_dropoff_datetime = pd.to_datetime(df.lpep_dropoff_datetime)
 
     df.head(n=0).to_sql(name=tbl_name, con=engine, if_exists='replace')
 
@@ -49,8 +49,8 @@ def main(params):
             df = next(df_iter)
 
             #convert datetimes
-            df.tpep_pickup_datetime = pd.to_datetime(df.tpep_pickup_datetime)
-            df.tpep_dropoff_datetime = pd.to_datetime(df.tpep_dropoff_datetime)
+            df.lpep_pickup_datetime = pd.to_datetime(df.lpep_pickup_datetime)
+            df.lpep_dropoff_datetime = pd.to_datetime(df.lpep_dropoff_datetime)
 
             df.to_sql(name=tbl_name, con=engine, if_exists='append')
 
@@ -69,7 +69,7 @@ def zones(params):
     host = params.host
     port = params.port
     db = params.db
-    tbl_name = params.tbl_name
+    tbl_name = params.tbl_zones
     url = params.url_zones
 
     #download csv
@@ -98,10 +98,15 @@ if __name__ == '__main__':
     parser.add_argument('--host', help='hostname of postgres')
     parser.add_argument('--port', help='port of postgres')
     parser.add_argument('--db', help='postgress database name')
-    parser.add_argument('--tbl_name', help='table name of where to write results')
+    parser.add_argument('--tbl_trips', help='table name of where to write trips results')
+    parser.add_argument('--tbl_zones', help='table name of where to write zones results')
     parser.add_argument('--url_trips', help='url of the csv location')
     parser.add_argument('--url_zones', help='url of the zones data')
 
     args = parser.parse_args()
 
     main(args)
+
+    time.sleep(300)
+
+    zones(args)
