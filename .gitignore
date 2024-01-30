@@ -6,6 +6,9 @@ ny_taxi_postgres_data/
 #KEYS!!!
 keys/
 
+#any json to be safe
+*.json
+
 #csv files
 *.csv
 *.csv.gz
