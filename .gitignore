@@ -13,6 +13,9 @@ keys/
 *.csv
 *.csv.gz
 
+#project data volumes
+hw1/ny_taxi_postgres_data_green/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
