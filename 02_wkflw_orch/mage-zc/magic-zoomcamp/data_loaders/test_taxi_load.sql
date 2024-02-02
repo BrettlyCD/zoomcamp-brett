@@ -1,0 +1,1 @@
+SELECT MIN(tpep_pickup_datetime) FROM ny_taxi.yellow_cab_

@@ -16,31 +16,24 @@ def export_data_to_google_cloud_storage(data, *args, **kwargs):
     config_path = path.join(get_repo_path(), 'io_config.yaml')
     config_profile = 'default'
 
-    project_id = "dezc-mage-brett"
     bucket_name = 'green_taxi_data_brett_hw2'
     table_name = 'green_taxi'
 
     root_path = f"{bucket_name}/{table_name}"
 
-    print(root_path)
+    #define pyarrow table
+    #table = pa.Table.from_pandas(data)
 
-    # #define pyarrow table
-    # table = pa.Table.from_pandas(df)
+    print(root_path)
+    #print(table)
 
     # #find storage object - pulls in env variable automatically
     # gcs = pa.fs.GcsFileSystem()
 
-    # #use parquet write to dataset
-    # pq.write_to_dataset(
-    #     table,
-    #     root_path = root_path,
-    #     partition_cols=['lpep_pickup_date'],
-    #     filesystem=gcs
-    # )
-
-
-    # GoogleCloudStorage.with_config(ConfigFileLoader(config_path, config_profile)).export(
-    #     df,
-    #     bucket_name,
-    #     object_key,
-    # )
+    # # #use parquet write to dataset
+    # # pq.write_to_dataset(
+    # #     table,
+    # #     root_path = root_path,
+    # #     partition_cols=['lpep_pickup_date'],
+    # #     filesystem=gcs
+    # # )

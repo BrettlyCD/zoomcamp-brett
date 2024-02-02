@@ -52,7 +52,11 @@ def load_data(*args, **kwargs):
         df = pd.read_csv(url_base+month+file_type, sep=",", compression="gzip", dtype=taxi_dtypes, parse_dates=parse_dates)
         dfs.append(df)
 
-    return pd.concat(dfs, ignore_index=True)
+    df = pd.concat(dfs, ignore_index=True)
+
+    print(df.shape)
+
+    return df
 
 
 @test

@@ -1,3 +1,5 @@
+import pandas as pd
+
 if 'transformer' not in globals():
     from mage_ai.data_preparation.decorators import transformer
 if 'test' not in globals():
@@ -22,8 +24,12 @@ def transform(data, *args, **kwargs):
     # Remove records with 0 passengers OR trip distance
     data = data[(data['passenger_count']!=0) & (data['trip_distance']!=0)]
 
+    print(f'{len(data)} records remaining.')
+
     #add date column
     data['lpep_pickup_date'] = data['lpep_pickup_datetime'].dt.date
+
+    print(data['VendorID'].value_counts())
 
     #convert to snake case
     data.columns = (data.columns

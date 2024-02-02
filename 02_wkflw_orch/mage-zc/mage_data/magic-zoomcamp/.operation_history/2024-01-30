@@ -1,0 +1,5 @@
+{"operation": "create", "resource": {"type": "pipeline", "uuid": "restless_merchant"}, "timestamp": 1706585436, "user": null}
+{"operation": "create", "resource": {"type": "pipeline", "uuid": "enchanting_cedar"}, "timestamp": 1706587384, "user": null}
+{"operation": "create", "resource": {"type": "pipeline", "uuid": "resounding_pond"}, "timestamp": 1706595393, "user": null}
+{"operation": "create", "resource": {"type": "pipeline", "uuid": "beaming_ronin"}, "timestamp": 1706595537, "user": null}
+{"operation": "create", "resource": {"type": "pipeline", "uuid": "enigmatic_cedar"}, "timestamp": 1706595703, "user": null}
