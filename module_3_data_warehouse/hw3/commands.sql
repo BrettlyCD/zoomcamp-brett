@@ -8,7 +8,7 @@ OPTIONS (
   uris = ['gs://taxi_data_2022_brettly/nyc_taxi_data_2022/*.parquet']
 );
 
-
+--How many records
 SELECT
   COUNT(1)
 FROM `dezc-mage-brett.ny_taxi.taxi_data_external`;
@@ -18,7 +18,7 @@ FROM `dezc-mage-brett.ny_taxi.taxi_data_external`;
 CREATE OR REPLACE TABLE `dezc-mage-brett.ny_taxi.taxi_data_materialized`
 AS SELECT * FROM `dezc-mage-brett.ny_taxi.taxi_data_external`;
 
-
+--validate number of records
 SELECT
   COUNT(1)
 FROM `dezc-mage-brett.ny_taxi.taxi_data_materialized`;
@@ -41,12 +41,14 @@ CLUSTER BY PUlocationID AS (
 
 
 --Write a query to retrieve the distinct PULocationID between lpep_pickup_datetime 06/01/2022 and 06/30/2022 (inclusive). With materialized and partitioned
+--materialized = 12.82MB
 SELECT DISTINCT
   PULocationID
 FROM `dezc-mage-brett.ny_taxi.taxi_data_materialized`
 WHERE 1=1
   AND lpep_pickup_datetime BETWEEN '2022-06-01' AND '2022-06-30';
 
+--paritioned = 1.12MB
 SELECT DISTINCT
   PULocationID
 FROM `dezc-mage-brett.ny_taxi.taxi_data_partitioned`
@@ -57,6 +59,4 @@ WHERE 1=1
 --Write a `SELECT count(*)` query FROM the materialized table you created. How many bytes does it estimate will be read? Why?
 SELECT count(*) FROM `dezc-mage-brett.ny_taxi.taxi_data_materialized`;
 
-
-
-
+--estimates 0 byes. I belive this is because it pulls the metadata to get this, versus using up compute resources.
