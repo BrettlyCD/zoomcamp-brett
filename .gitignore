@@ -2,6 +2,7 @@
 
 # data volumes
 ny_taxi_postgres_data/
+data/
 
 #KEYS!!!
 keys/
